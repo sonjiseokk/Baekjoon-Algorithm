@@ -35,8 +35,10 @@ for i in range(m):
     u,v = map(int,input().split())
     graph[u].append(v)
     graph[v].append(u)
+
 for lst in graph:
     lst.sort()
+    
 count = 1
 answer = [0] * (n+1)
 a = dfs(start)
