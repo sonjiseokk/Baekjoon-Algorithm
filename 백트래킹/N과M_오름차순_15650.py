@@ -1,18 +1,33 @@
+# 문제
+# n과 m을 활용하는 정석적인 백트래킹 문제2 이다.
+# 이전 문제와 달리 [1,2] 와 [2,1]과 같이 숫자가 같은 순열은 존재할 수 없어야 한다.
+
+# 조건
+# 1. 한 줄에 하나씩 문제의 조건을 만족하는 수열을 출력한다. 
+# 2. 중복되는 수열을 여러 번 출력하면 안된다. ex) (2,2)
+# 3. 수열은 사전 순으로 증가하는 순서로 출력해야 한다.
+# 4. 1부터 N까지 자연수 중에서 중복 없이 M개를 고른 수열이여야 한다.
+
+# 풀이
+# 1. list 하나를 정의하여 백트래킹을 시도한다.
+# 2. list 안에 i값, 즉 n보다 작은 숫자가 없다면 추가하고 백트래킹을 다시 시도한다.
+# 2-1. not in을 통해 중복되는 수열을 제거하는 것이다.
+# 2-2. 이 과정에서 i+1 을 넘겨주어 백트래킹 재귀가 i+1 부터 돌게 하여 중복을 없앤다.
+# 3. 순차적으로 진행된다면 result = [1,2] 가 될 것이고, 만약 m = 2 라고 가정한다면,
+# 3-1. result의 길이가 m가 같음에 따라 출력되고, 다음 과정에서 result = [1] 이 된 후, 다음 과정이 진행된다.
+# 4. 결국 이런식으로 계속 반복하면 결과가 출력되어 정답 판정을 받는다. 
+
+
 def backtrack(start):
     if len(arr) == m:
-        t = arr[:]
-        t.reverse()
-        if t != arr and arr not in result:
-            if t[0] > arr[0]:
-                result.append(arr[:])
+        print(' '.join(map(str,arr)))
         return
     for i in range(start,n+1):
-        arr.append(i)
-        backtrack(start+1)
-        arr.pop()
+        if i not in arr:
+            arr.append(i)
+            backtrack(i+1)
+            arr.pop()
 n,m = map(int,input().split())
-result = []
+
 arr= []
 backtrack(1)
-for i in range(len(result)):
-    print(" ".join(map(str,result[i])))
