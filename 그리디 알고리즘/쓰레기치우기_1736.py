@@ -39,7 +39,7 @@ while coin_list:
     del_list = get_lis_improved(coin_list)
     coin_list = list(set(coin_list) - set(del_list))
     coin_list.sort(key=lambda x:x[0])
-    coin_list.sort(key=lambda x:x[0])
+    coin_list.sort(key=lambda x:x[1])
     count+=1
 
 print(count)
