@@ -18,15 +18,15 @@
 
 
 def backtrack():
-    if len(result) == m:
-        print(' '.join(map(str,result)))
+    if len(res) == m:
+        print(' '.join(map(str,res)))
         return
     for i in range(1,n+1):
-        if i not in result:
-            result.append(i)
+        if i not in res:
+            res.append(i)
             backtrack()
-            result.pop()
-n,m = map(int,input().split())
-result = []
+            res.pop()
 
+res = []
+n, m = map(int,input().split())
 backtrack()

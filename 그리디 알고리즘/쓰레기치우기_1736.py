@@ -15,12 +15,12 @@
 
 n,m = map(int,input().split())
 
-dp = [list(map(int,input().split())) for _ in range(n)]
+graph = [list(map(int,input().split())) for _ in range(n)]
 
 coin_list = []
 for i in range(n):
     for j in range(m):
-        if dp[i][j] == 1:
+        if graph[i][j] == 1:
             coin_list.append((i,j))
 
 coin_list.sort(key=lambda x:x[0])
