@@ -1,12 +1,23 @@
-def backtrack(start):
-    if len(result) == m:
-        print(' '.join(map(str,result)))
-        return
-    for i in range(start,n+1):
-        result.append(i)
-        backtrack(i)
-        result.pop()
-n,m = map(int,input().split())
-result = []
+from typing import List
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        arr = []
+        candidates.sort()
+        res = []
+        def backtrack(target,candidates):
+            if target == 0:
+                res.append(arr[:])
+                return
+            
+            for i, x in enumerate(candidates):
+                if x <= target:
+                    arr.append(x)
+                    backtrack(target-x,candidates[i::])
+                    arr.pop()
+        
+        backtrack(target, candidates)
 
-backtrack(1)
+        return res
+
+a =Solution()
+print(a.combinationSum([2,3,6,7],7))
